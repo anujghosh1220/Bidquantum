@@ -185,13 +185,15 @@ function BiddingCard({ item, onBid, user }) {
             </div>
           </div>
           
-          {/* Bid Recommendation */}
-          <BidRecommendation 
-            user={user}
-            itemId={item.id}
-            currentBid={item.currentBid}
-            predictedStartingPrice={predictedStartingPrice}
-          />
+          {/* Bid Recommendation - Only show for logged-in users */}
+          {user && (
+            <BidRecommendation 
+              user={user}
+              itemId={item.id}
+              currentBid={item.currentBid}
+              predictedStartingPrice={predictedStartingPrice}
+            />
+          )}
           
           <button 
             className="bid_now_button" 

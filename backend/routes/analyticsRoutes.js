@@ -39,6 +39,37 @@ router.get('/recommendation/:userId/:itemId', async (req, res) => {
     }
 });
 
+// Get predictions for all items for a specific user
+router.get('/predictions/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        
+        // Get all items
+        const items = await Item.getAll();
+        
+        // Get predictions for each item
+        const predictions = {};
+        for (const item of items) {
+            try {
+                const recommendation = await UserAnalytics.getBidRecommendation(
+                    parseInt(userId), 
+                    parseFloat(item.currentBid),
+                    parseFloat(item.predictedStartingPrice)
+                );
+                predictions[item.id] = recommendation.recommendedBid;
+            } catch (error) {
+                // If no analytics data, use predicted starting price
+                predictions[item.id] = item.predictedStartingPrice;
+            }
+        }
+        
+        res.json(predictions);
+    } catch (error) {
+        console.error('Error getting predictions:', error);
+        res.status(500).json({ message: 'Error getting predictions' });
+    }
+});
+
 // Get user analytics
 router.get('/user/:userId', async (req, res) => {
     try {

@@ -1,0 +1,329 @@
+/* Payment Modal Styles */
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.payment-modal {
+  background: var(--gradient-primary);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp 0.3s ease-out;
+}
+
+.payment-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.payment-modal-header h2 {
+  color: var(--accent-gold);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.close-button:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.payment-modal-body {
+  min-height: 300px;
+}
+
+/* Payment Form Styles */
+#payment-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.payment-amount {
+  text-align: center;
+  padding: var(--space-lg);
+  background: rgba(212, 175, 55, 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.payment-amount h3 {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.amount-display {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-element-container {
+  margin-bottom: var(--space-lg);
+}
+
+.card-element-container label {
+  display: block;
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+#card-element {
+  background: rgba(45, 55, 72, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: all var(--transition-normal);
+}
+
+#card-element:focus-within {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+/* Error and Success States */
+.payment-error {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid var(--danger-red);
+  color: #f87171;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.payment-success {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid var(--success-green);
+  color: #34d399;
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.payment-success h4 {
+  color: #34d399;
+  margin: 0 0 var(--space-sm) 0;
+  font-size: 1.125rem;
+}
+
+.payment-success p {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Payment Actions */
+.payment-actions {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: space-between;
+}
+
+.payment-actions .btn {
+  flex: 1;
+  padding: var(--space-md) var(--space-lg);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: all var(--transition-normal);
+}
+
+.payment-actions .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Security Badges */
+.security-badges {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-lg) 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  margin-top: var(--space-lg);
+}
+
+.badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+}
+
+.badge span:first-child {
+  font-size: 1.25rem;
+}
+
+/* Login Required State */
+.login-required {
+  text-align: center;
+  padding: var(--space-2xl);
+}
+
+.login-required h3 {
+  color: var(--accent-gold);
+  margin: 0 0 var(--space-md) 0;
+  font-size: 1.25rem;
+}
+
+.login-required p {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 var(--space-xl) 0;
+  font-size: 0.875rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .payment-modal {
+    width: 95%;
+    padding: var(--space-xl);
+    margin: var(--space-md);
+  }
+
+  .payment-modal-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .amount-display {
+    font-size: 2rem;
+  }
+
+  .payment-actions {
+    flex-direction: column;
+  }
+
+  .security-badges {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .badge {
+    flex-direction: row;
+    justify-content: center;
+    gap: var(--space-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .payment-modal {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .amount-display {
+    font-size: 1.75rem;
+  }
+
+  .payment-actions .btn {
+    padding: var(--space-sm) var(--space-md);
+    font-size: 0.875rem;
+  }
+}
+
+/* Stripe Element Customization */
+.StripeElement {
+  background: rgba(45, 55, 72, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  transition: all var(--transition-normal);
+}
+
+.StripeElement--focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+.StripeElement--invalid {
+  border-color: var(--danger-red);
+}
+
+.StripeElement--complete {
+  border-color: var(--success-green);
+}

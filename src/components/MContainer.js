@@ -16,10 +16,14 @@ import MainRightBottom from './MainRightBottom';
 
 function MContainer({ user }) {
   const [items, setItems] = useState([]);
+  const [userPredictions, setUserPredictions] = useState({});
 
   useEffect(() => {
     fetchItems();
-  }, []);
+    if (user) {
+      fetchUserPredictions();
+    }
+  }, [user]);
 
   const fetchItems = async () => {
     try {
@@ -27,6 +31,15 @@ function MContainer({ user }) {
       setItems(response.data);
     } catch (error) {
       console.error('Error fetching items:', error);
+    }
+  };
+
+  const fetchUserPredictions = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/api/analytics/predictions/${user.id}`);
+      setUserPredictions(response.data);
+    } catch (error) {
+      console.error('Error fetching user predictions:', error);
     }
   };
 
@@ -57,19 +70,43 @@ function MContainer({ user }) {
   return (
     <div className='mainContainer'>
         <div className="left">
-            <div className="banner" style={{ 
-                background: `url(${Banner})`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                }}>
+            <div className="banner">
+                <div className="banner-overlay"></div>
                 <div className="textcontainer">
-                    <h1 className="luminance-text">BidQuantum</h1>
-                    <h2 className="luminance-text">Intelligent Predictive Bidding</h2>
-                    <p>By Anuj Ghosh</p>
-                    <div className="bid">
-                        <Link to={`/bid/${items[0]?.id}`} className="button1">Bid Now</Link>
-                        <p>Ending In: <span>2d:15h:20m</span></p>
+                    <div className="banner-content">
+                        <h1 className="banner-title text-gradient">BidQuantum</h1>
+                        <h2 className="banner-subtitle">Intelligent Predictive Bidding</h2>
+                        <p className="banner-author">By Anuj Ghosh</p>
+                        <div className="banner-stats">
+                            <div className="stat-item">
+                                <span className="stat-number">{items.length}</span>
+                                <span className="stat-label">Active Items</span>
+                            </div>
+                            <div className="stat-item">
+                                <span className="stat-number">24/7</span>
+                                <span className="stat-label">Live Trading</span>
+                            </div>
+                            <div className="stat-item">
+                                <span className="stat-number">AI</span>
+                                <span className="stat-label">Powered</span>
+                            </div>
+                        </div>
+                        <div className="bid">
+                            <Link to={`/bid/${items[0]?.id}`} className="bid-button">
+                                <span>Start Bidding</span>
+                                <div className="button-glow"></div>
+                            </Link>
+                            <div className="countdown-container">
+                                <p>Next Auction Ends:</p>
+                                <div className="countdown">
+                                    <span className="time-unit">2d</span>
+                                    <span className="time-separator">:</span>
+                                    <span className="time-unit">15h</span>
+                                    <span className="time-separator">:</span>
+                                    <span className="time-unit">20m</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,12 +114,16 @@ function MContainer({ user }) {
             <div className="cards">
                 <div className="filters">
                     <div className="popular">
-                        <h2>New items</h2>   
+                        <h2 className="section-title">
+                            <span className="title-icon">🔥</span>
+                            Featured Items
+                        </h2>   
+                        <p className="section-subtitle">Discover premium auction items</p>
                     </div>
                     <div className="filter_buttons">
-                        <Link to="/gallery" className="button1">All</Link>
-                        <select>
-                          <option value="">Select a Category</option>
+                        <Link to="/gallery" className="btn btn-primary">View All</Link>
+                        <select className="input category-select">
+                          <option value="">Select Category</option>
                           {categories.map((cat) => (
                             <option key={cat} value={cat}>
                               {cat}
@@ -92,22 +133,23 @@ function MContainer({ user }) {
                     </div>
                 </div>
 
-                <main>
-                    {items.map((item) => (
-                        <CardMain
-                            key={item.id}
-                            id={item.id}
-                            imgSrc={item.image}
-                            title={item.title}
-                            sellerName={item.sellerName}
-                            hearts={item.hearts}
-                            currentBid={item.currentBid}
-                            previousBid={item.previousBid}
-                            predictedStartingPrice={item.predictedStartingPrice}
-                            listDate={item.listDate}
-                            onDelete={() => handleDelete(item.id)}
-                            user={user}
-                        />
+                <main className="items-grid">
+                    {items.map((item, index) => (
+                        <div key={item.id} className="item-card-wrapper" style={{animationDelay: `${index * 0.1}s`}}>
+                            <CardMain
+                                id={item.id}
+                                imgSrc={item.image}
+                                title={item.title}
+                                sellerName={item.sellerName}
+                                hearts={item.hearts}
+                                currentBid={item.currentBid}
+                                previousBid={item.previousBid}
+                                predictedStartingPrice={userPredictions[item.id] || item.predictedStartingPrice}
+                                listDate={item.listDate}
+                                onDelete={() => handleDelete(item.id)}
+                                user={user}
+                            />
+                        </div>
                     ))}
                 </main>
             </div>

@@ -15,6 +15,8 @@ const Item = require('./models/Item');
 const Bid = require('./models/Bid');
 const UserAnalytics = require('./models/UserAnalytics');
 const analyticsRouter = require('./routes/analyticsRoutes');
+const paymentRouter = require('./routes/paymentRoutes');
+const verificationRouter = require('./routes/verificationRoutes');
 
 // Enhanced error logging
 process.on('uncaughtException', (error) => {
@@ -388,6 +390,12 @@ app.get('/api/health', (req, res) => {
 
 // Analytics routes
 app.use('/api/analytics', analyticsRouter);
+
+// Payment routes
+app.use('/api/payments', paymentRouter);
+
+// Verification routes
+app.use('/api', verificationRouter);
 
 // Statistics endpoint
 app.get('/api/statistics', async (req, res) => {

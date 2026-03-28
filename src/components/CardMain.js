@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { BsFillHeartFill } from "react-icons/bs";
+import { BsFillHeartFill, BsClock, BsTrophy } from "react-icons/bs";
+import { AiOutlineEye } from "react-icons/ai";
+import './CardMain.css';
 
 function CardMain({imgSrc, title, hearts, id, onDelete, user, sellerName, currentBid, previousBid, predictedStartingPrice, listDate}) {
   const [showHistory, setShowHistory] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
 
   const toggleHistory = (e) => {
     e.preventDefault();
@@ -29,47 +32,125 @@ function CardMain({imgSrc, title, hearts, id, onDelete, user, sellerName, curren
     }
   };
 
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(price || 0);
+  };
+
+  const getTimeRemaining = () => {
+    // This would normally calculate real time remaining
+    return '1d: 12h: 10m';
+  };
+
   return (
-    <div className="card_main">
-      <img src={imgSrc} alt="" />
-      <div className="card_main_name">
-        <h2>{title}</h2>
-        {sellerName && (
-          <h2 style={{ fontSize: '14px', margin: 0, color: '#adabb8', fontWeight: 'normal' }}>{sellerName}</h2>
-        )}
-        <div className="card_icon">
-          <i>
-            <BsFillHeartFill /> <span>{hearts}</span>
-          </i>
-        </div>
-      </div>
-      
-      <div className="stats">
-        <p>Current Bid <span> ${currentBid || 0} </span></p>
-        <p>Ending In: <span> 1d: 12h: 10m </span></p>
-      </div>
-
-      <div className="card_button">
-        <Link to={`/bid/${id}`} className="button1 btn">Place Bid</Link>
-        {user?.isAdmin ? (
-          <a href=" " className="button2 btn delete-btn" onClick={handleDelete}>Delete</a>
-        ) : (
-          <a href=" " className="button2 btn" onClick={toggleHistory}>History</a>
-        )}
-      </div>
-
-      {!user?.isAdmin && showHistory && (
-        <div className="history_dropdown">
-          <div className="bid_history">
-            <p><strong>Current Bid:</strong> ${currentBid || 0}</p>
-            <p><strong>Previous Bid:</strong> ${previousBid || 0}</p>
-            <p><strong>Starting Price:</strong> ${predictedStartingPrice || 0}</p>
-            <p><strong>Listed On:</strong> {listDate ? new Date(listDate).toLocaleDateString() : 'N/A'}</p>
+    <div 
+      className="card_main"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="card-image-container">
+        <img src={imgSrc} alt={title} className="card-image" />
+        <div className="card-overlay">
+          <div className="overlay-actions">
+            <Link to={`/bid/${id}`} className="btn btn-primary btn-sm">
+              <AiOutlineEye /> View Details
+            </Link>
+            {user?.isAdmin && (
+              <button 
+                onClick={handleDelete}
+                className="btn btn-danger btn-sm"
+              >
+                Delete
+              </button>
+            )}
           </div>
         </div>
-      )}
+        {hearts > 0 && (
+          <div className="hearts-badge">
+            <BsFillHeartFill /> {hearts}
+          </div>
+        )}
+      </div>
+      
+      <div className="card-content">
+        <div className="card-header">
+          <h3 className="card-title">{title}</h3>
+          {sellerName && (
+            <p className="card-seller">by {sellerName}</p>
+          )}
+        </div>
+        
+        <div className="card-stats">
+          <div className="stat-item">
+            <div className="stat-label">
+              <BsTrophy /> Current Bid
+            </div>
+            <div className="stat-value price">
+              {formatPrice(currentBid)}
+            </div>
+          </div>
+          
+          <div className="stat-item">
+            <div className="stat-label">
+              <BsClock /> Time Left
+            </div>
+            <div className="stat-value countdown">
+              {getTimeRemaining()}
+            </div>
+          </div>
+        </div>
+
+        {predictedStartingPrice && user && (
+          <div className="card-prediction">
+            <span className="prediction-label">AI Prediction:</span>
+            <span className="prediction-value">{formatPrice(predictedStartingPrice)}</span>
+          </div>
+        )}
+        
+        <div className="card-footer">
+          <Link to={`/bid/${id}`} className="bid-button">
+            Place Bid
+          </Link>
+          <button 
+            onClick={toggleHistory}
+            className="history-toggle"
+          >
+            {showHistory ? 'Hide' : 'Show'} History
+          </button>
+        </div>
+        
+        {showHistory && (
+          <div className="bid-history">
+            <h4>Bidding History</h4>
+            <div className="history-item">
+              <span className="history-label">Current Bid:</span>
+              <span className="history-value">{formatPrice(currentBid)}</span>
+            </div>
+            {previousBid && (
+              <div className="history-item">
+                <span className="history-label">Previous Bid:</span>
+                <span className="history-value">{formatPrice(previousBid)}</span>
+              </div>
+            )}
+            <div className="history-item">
+              <span className="history-label">Starting Price:</span>
+              <span className="history-value">{formatPrice(predictedStartingPrice)}</span>
+            </div>
+            <div className="history-item">
+              <span className="history-label">Listed:</span>
+              <span className="history-value">
+                {listDate ? new Date(listDate).toLocaleDateString() : 'Recently'}
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
-  )
+  );
 }
 
 export default CardMain;
