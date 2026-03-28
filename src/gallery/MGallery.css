@@ -1,0 +1,308 @@
+/* Import Luminance's global style */
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+:root,
+body {
+  color: #fff;
+  height: 100%;
+  overflow: hidden;
+  background: #333641;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainContainer {
+    width: 100%;
+    height: calc(100% - 45px);
+    display: flex;
+    padding-top: 15px;
+}
+
+.mainContainer .left {
+    width: calc(100% - 30%);
+    height: auto;
+    overflow-y: scroll;
+    transition: all 0.3s cubic-bezier(0.17,0.81,0.38,1.39);
+}
+
+.mainContainer .left::-webkit-scrollbar {
+    display: none;
+}
+
+.mainContainer .left .banner {
+    height: 290px;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.mainContainer .left .banner .textcontainer {
+    position: absolute;
+    right: 20px;
+    bottom: 52px;
+}
+
+.mainContainer .left .banner .textcontainer h1,
+.mainContainer .left .banner .textcontainer h2 {
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 3.5em;
+    color: transparent;
+    background: 50% 100% / 50% 50% no-repeat
+                radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+
+.mainContainer .left .banner .textcontainer p {
+    color: #f1f1f1;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.mainContainer .left .banner .textcontainer .bid {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.mainContainer .left .banner .textcontainer .bid p {
+    margin-left: 10px;
+}
+
+.mainContainer .left .banner .textcontainer .bid p span {
+    display: block;
+    color: green;
+    font-weight: 600;
+}
+
+.mainContainer .left .cards {
+    background: #252525;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mainContainer .left .cards .filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 30px;
+}
+
+.mainContainer .left .cards .popular {
+    display: flex;
+    align-items: center;
+}
+
+.mainContainer .left .cards .popular h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #d1cfd4;
+    margin-right: 10px;
+}
+
+.mainContainer .left .cards main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mainContainer .left .cards main .card_main {
+    background: #3d3d3d;
+    border-radius: 0.5em;
+    overflow-y: hidden;
+    max-width: 260px;
+    padding-bottom: 20px;
+    margin: 15px 10px;
+}
+
+.mainContainer .left .cards main .card_main img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+.mainContainer .left .cards main .card_main .card_main_name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    margin-top: 10px;
+}
+
+.mainContainer .left .cards main .card_main .card_main_name h2 {
+    color: #e9e9ec;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.mainContainer .left .cards main .card_main .card_main_name .card_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainContainer .left .cards main .card_main .card_main_name .card_icon i {
+    color: #b1147d;
+    text-shadow: 3px 5px 20px rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+}
+
+.mainContainer .left .cards main .card_main .card_main_name .card_icon i span {
+    color: #e9e9ec;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.mainContainer .left .cards main .card_main .stats {
+    columns: 2;
+    column-rule: 1px solid #adabb8;
+    text-align: center;
+    gap: 1em;
+    margin: 15px 0;
+}
+
+.mainContainer .left .cards main .card_main .stats p {
+    color: #adabb8;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.mainContainer .left .cards main .card_main .stats p span {
+    display: block;
+    color: #b1147d;
+    font-size: 16px;
+}
+
+.mainContainer .left .cards main .card_main .card_button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.mainContainer .left .cards main .card_main .card_button .btn {
+    font-size: 10px !important;
+}
+
+.mainContainer .right {
+    width: calc(100% - 70%);
+    padding: 0 10px;
+    padding-left: 20px;
+    transition: all 0.3s cubic-bezier(0.17,0.81,0.38,1.39);
+}
+
+.mainContainer .right .topCard,
+.mainContainer .right .bottomRightCard {
+    background: #252525;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mainContainer .right .topCard .topCard_name, 
+.mainContainer .right .bottomRightCard .bottomName {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.mainContainer .right .topCard .topCard_name h2,
+.mainContainer .right .bottomRightCard .bottomName h2 { 
+    color: #d1d0d5;
+}
+
+.mainContainer .right .topCard .topCard_name a,
+.mainContainer .right .bottomRightCard .bottomName a {
+    color: #d11b94;
+}
+
+.mainContainer .right .topCard .earnings {
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.mainContainer .right .topCard .earnings p {
+    margin: 8px 0;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #adabb8;
+}
+
+.mainContainer .right .topCard .earnings p:nth-child(odd) {
+    background: #252525;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.mainContainer .right .topCard .earnings p:last-child span {
+    font-size: 17px;
+    color: #b1147d;
+}
+
+.mainContainer .right .bottomRightCard {
+    margin-top: 15px;
+}
+
+.mainContainer .right .bottomRightCard .topSeller {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.mainContainer .right .bottomRightCard .topSeller .topSellerImg {
+    width: 45px;
+    height: 45px;
+    background: #252041;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.mainContainer .right .bottomRightCard .topSeller .topSellerImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mainContainer .right .bottomRightCard .topSeller .topSellerName {
+    font-size: 14px;
+    color: #adabb8;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.mainContainer .right .bottomRightCard .topSeller .topSellerName span {
+    display: block;
+    font-size: 12px;
+}
+
+.mainContainer .right .bottomRightCard .topSeller .btn {
+    font-size: 10px;
+    margin-left: auto;
+}
+
+/* Keyframes for text animations */
+@keyframes reveal {
+    80%{
+      letter-spacing: 8px;
+    }
+    100% {
+      background-size: 300% 300%;
+    }
+}
+
+@keyframes glow {
+    40% {
+      text-shadow: 0 0 8px #fff;
+    }
+}

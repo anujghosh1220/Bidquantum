@@ -1,0 +1,28 @@
+{
+  "name": "bidquantum-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "description": "BidQuantum Backend API - Intelligent Predictive Bidding Platform",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "populate": "node scripts/populateDummyData.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.9.5",
+    "multer": "^2.1.1",
+    "mysql2": "^3.20.0",
+    "path": "^0.12.7",
+    "sqlite3": "^6.0.1",
+    "ws": "^8.20.0"
+  }
+}

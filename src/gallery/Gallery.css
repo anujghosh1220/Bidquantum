@@ -1,0 +1,237 @@
+.Gallery {
+    width: 100%;
+    height: 100vh;
+    background: #333641;
+    overflow: hidden;
+    display: flex;
+}
+  
+.galleryContainer {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.galleryContent {
+    background: #252525;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.galleryContent h1 {
+    color: #d1cfd4;
+    margin-bottom: 30px;
+    font-size: 2em;
+    padding: 5px 30px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 20px 15px;
+    width: 100%;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 1400px) {
+    .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+.galleryGrid::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari and Opera */
+}
+
+.card_main {
+    position: relative;
+    background: #3d3d3d;
+    border-radius: 0.5em;
+    overflow: hidden;
+    width: 100%;
+    min-width: 200px;
+    max-width: 280px;
+    padding-bottom: 20px;
+    margin: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_main img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card_main:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+.card_main .card_main_name {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    margin-top: 10px;
+}
+
+.card_main .card_main_name h2 {
+    color: #e9e9ec;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.card_main .card_main_name .card_icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_main .card_main_name .card_icon i {
+    color: #b1147d;
+    text-shadow: 3px 5px 20px rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+}
+
+.card_main .card_main_name .card_icon i span {
+    color: #e9e9ec;
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.card_main .stats {
+    columns: 2;
+    column-rule: 1px solid #adabb8;
+    text-align: center;
+    gap: 1em;
+    margin: 15px 0;
+}
+
+.card_main .stats p {
+    color: #adabb8;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card_main .stats p span {
+    display: block;
+    color: #b1147d;
+    font-size: 16px;
+}
+
+.card_main .card_button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.card_main .card_button .btn {
+    font-size: 10px !important;
+}
+
+.history_dropdown {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background: #2d2d2d;
+    margin: 0 15px;
+    border-radius: 0.3em;
+}
+
+.history_dropdown.active {
+    max-height: 200px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.history_dropdown p {
+    color: #adabb8;
+    font-size: 12px;
+    margin: 5px 0;
+}
+
+.history_dropdown .bid_history {
+    border-left: 2px solid #b1147d;
+    padding-left: 10px;
+    margin: 5px 0;
+}
+
+.galleryContainer::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes reveal {
+    80% {
+        letter-spacing: 8px;
+    }
+    100% {
+        background-size: 300% 300%;
+    }
+}
+
+@keyframes glow {
+    40% {
+        text-shadow: 0 0 8px #fff;
+    }
+}
+
+.galleryHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-item-btn {
+    background: #b1147d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.add-item-btn:hover {
+    background: #8f1065;
+}
+
+.admin-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 20px;
+}
+
+.charity-btn {
+  background-color: #28a745;
+}
+
+.charity-btn:hover {
+  background-color: #218838;
+}
+  

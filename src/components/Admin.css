@@ -1,0 +1,72 @@
+.Admin {
+    width: 100%;
+    height: 100vh;
+    background: #333641;
+    overflow: hidden;
+    display: flex;
+}
+
+.adminContainer {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.adminContent {
+    background: #252525;
+    padding: 30px;
+    margin-top: 20px;
+    border-radius: 0.5em;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+}
+
+.adminContent h1 {
+    color: #d1cfd4;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: #adabb8;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    background: #3d3d3d;
+    color: #e9e9ec;
+}
+
+.form-group input[type="file"] {
+    padding: 5px;
+}
+
+.submit-btn {
+    background: #b1147d;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #8f1065;
+}
+
+.adminContainer::-webkit-scrollbar {
+    display: none;
+}
